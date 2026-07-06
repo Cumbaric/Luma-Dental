@@ -539,35 +539,44 @@ h3 { font-size: 1.15rem; font-weight: 600; font-family: var(--font-body); }
 /* Stats */
 .stats-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  gap: 0;
   background: var(--primary);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
   text-align: center;
+  overflow: hidden;
 }
 
-.stat-item { color: #fff; }
+.stat-item {
+  color: #fff;
+  min-width: 0;
+  padding-block: var(--space-sm);
+}
+.stat-item + .stat-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .stat-number {
   font-family: var(--font-head);
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 13vw, 3.1rem);
   font-weight: 300;
   line-height: 1;
   display: inline-block;
 }
 .stat-suffix {
   font-family: var(--font-head);
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.15rem, 6vw, 1.75rem);
   font-weight: 300;
   opacity: .8;
 }
 .stat-label {
-  font-size: 0.82rem;
+  font-size: clamp(0.72rem, 3.2vw, 0.82rem);
   text-transform: uppercase;
   letter-spacing: .08em;
   opacity: .7;
   margin-top: 0.4rem;
+  overflow-wrap: anywhere;
 }
 
 /* ── 11. TIM ──────────────────────────────────────────────── */
@@ -842,7 +851,7 @@ h3 { font-size: 1.15rem; font-weight: 600; font-family: var(--font-body); }
 /* ── 14. ZAKAZIVANJE / FORMA ──────────────────────────────── */
 .zakazivanje-inner {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   align-items: start;
 }
 
@@ -899,8 +908,8 @@ h3 { font-size: 1.15rem; font-weight: 600; font-family: var(--font-body); }
 /* Form */
 .forma-wrap {
   background: var(--surface);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
   box-shadow: var(--shadow-lg);
 }
 
@@ -1071,6 +1080,16 @@ textarea { resize: vertical; min-height: 110px; }
   .tim-grid           { grid-template-columns: repeat(2, 1fr); }
   .testimonijali-grid { grid-template-columns: repeat(2, 1fr); }
   .form-row           { grid-template-columns: repeat(2, 1fr); }
+  .stats-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-md);
+  }
+  .stat-item { padding-block: 0; }
+  .stat-item + .stat-item { border-top: none; }
+  .stat-number { font-size: clamp(2.2rem, 6vw, 3.5rem); }
+  .stat-suffix { font-size: clamp(1.4rem, 3vw, 2rem); }
 }
 
 /* ── 19. RESPONSIVE — desktop (≥960px) ───────────────────── */
@@ -1122,7 +1141,11 @@ textarea { resize: vertical; min-height: 110px; }
   }
 
   /* Zakazivanje */
-  .zakazivanje-inner { grid-template-columns: 1fr 1.2fr; }
+  .zakazivanje-inner { grid-template-columns: 1fr 1.2fr; gap: var(--space-xl); }
+  .forma-wrap {
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
 
   /* Footer */
   .footer-inner {
